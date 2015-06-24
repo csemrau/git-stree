@@ -344,7 +344,7 @@ function normalize_prefix
     path="${path/${BASH_REMATCH[0]}/}"
 	break
   done
-
+  
   sed "s@$root/@@" <<< "$path"
 }
 
@@ -392,7 +392,7 @@ function pull_subtree
     echo "$msg" > "$msg_file"
     local commits=$(grep --count '^commit ' "$msg_file")
     git commit -F "$msg_file" &&
-    git config --local "stree.$root_key.latest-sync" "$(git rev-parse --short HEAD)"
+    git config --local "stree.$root_key.latest-sync" "$(git rev-parse --short "$remote/$branch")"
     yay "STree '$root_key' pulled, $commits update(s) committed."
   fi
 }
