@@ -339,8 +339,10 @@ function normalize_prefix
 
   local path="$(pwd -P)/$1"
   path="${path//\/.\//\/}"
+## TODO This loop condition is spuriously true! (csemrau)
   while [[ "$path"=~"([^/][^/]*/\.\./)" ]]; do
     path="${path/${BASH_REMATCH[0]}/}"
+	break
   done
 
   sed "s@$root/@@" <<< "$path"
