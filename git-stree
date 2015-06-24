@@ -293,7 +293,7 @@ function list_subtrees
     branch_exists "$branch_name" && backports=true
     $backports && backporting=" (backports through $branch_name)"
 
-    echo "• $stree [$prefix] <=> $remoting$backporting"
+    echo " $stree [$prefix] <=> $remoting$backporting"
     if $verbose; then
       local latest_sha=$(git config --local "stree.$stree.latest-sync")
       local infix=''
